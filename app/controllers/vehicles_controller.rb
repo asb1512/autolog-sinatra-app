@@ -13,4 +13,9 @@ class VehiclesController < ApplicationController
       current_user.save
       redirect "/#{current_user.email}"
    end
+
+   get '/vehicles/:vehicle_slug' do
+      
+   end
+
 end
