@@ -6,9 +6,10 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :sessions
+    use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :secret => 'your_secret'
     use Rack::Flash
-    set :views, Proc.new { File.join(root, "../views/") }
   end
 
   get "/" do
@@ -44,15 +45,18 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     @user = User.find_by(email: params[:email])
     
-    
+    if @user && @user.authenticate(params[:password])
+      session
       session[:user_id] = @user.id
-      redirect "/users/#{@user.email}"
-    # else
-    #   flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
-    # end
+      
+      redirect to "/users/#{@user.email}"
+    else
+      flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
+    end
   end
 
   get '/users/:email' do
+    binding.pry
     if logged_in? && current_user.email == params[:email]
       erb :'/users/show'
     else
