@@ -16,6 +16,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    
+    binding.pry
+    if !!/@/.match(params[:email]) && !!/\S{8}\W{1}/.match(params[:password])
+      User.create(email: params[:email], password: params[:password])
+    else
+      redirect "/signup"
+    end
   end
 end
