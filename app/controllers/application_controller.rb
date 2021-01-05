@@ -30,11 +30,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :'users/login'
+    if !logged_in?
+      erb :'users/login'
+    else
+      redirect "/users/#{current_user.email}"
+    end
   end
 
   post '/login' do
-    user = User.find_by(username: params[:username])
+    user = User.find_by(email: params[:email])
   end
 
   helpers do
