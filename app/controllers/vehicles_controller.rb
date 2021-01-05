@@ -8,6 +8,9 @@ class VehiclesController < ApplicationController
    end
 
    post '/vehicles' do
-      binding.pry
+      vehicle = Vehicle.create(model_year: params[:model_year], make: params[:make], model: params[:model], mileage: params[:mileage])
+      current_user.vehicles << vehicle
+      current_user.save
+      redirect "/#{current_user.email}"
    end
 end
