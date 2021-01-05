@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       if !logged_in?
       erb :'users/login'
       else
-      redirect "/users/#{current_user.email}"
+      redirect "/#{current_user.email}"
       end
    end
 
@@ -33,13 +33,13 @@ class UsersController < ApplicationController
       session
       session[:user_id] = @user.id
       
-      redirect to "/users/#{@user.email}"
+      redirect to "/#{@user.email}"
       else
       flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
       end
    end
 
-   get '/users/:email' do
+   get '/:email' do
       if logged_in? && current_user.email == params[:email]
       erb :'/users/show'
       else
