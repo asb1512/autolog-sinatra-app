@@ -39,14 +39,6 @@ class UsersController < ApplicationController
       end
    end
 
-   get '/:email' do
-      if logged_in? && current_user.email == params[:email]
-      erb :'/users/show'
-      else
-      flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
-      end
-   end
-
    get '/logout' do
       if logged_in?
          session[:user_id] = nil
@@ -55,4 +47,13 @@ class UsersController < ApplicationController
          redirect "/"
       end
    end
+
+   get '/:email' do
+      if logged_in? && current_user.email == params[:email]
+      erb :'/users/show'
+      else
+      flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
+   end
+
 end
