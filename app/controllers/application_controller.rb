@@ -36,4 +36,14 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(username: params[:username])
   end
+
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      @user = User.find_by(id: session[:user_id]) if session[:user_id]
+    end
+  end
 end
