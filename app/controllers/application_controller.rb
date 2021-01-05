@@ -48,6 +48,14 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get '/users/:email' do
+    if logged_in? && current_user.email == params[:email]
+      erb :'/users/show'
+    else
+      
+    end
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]
