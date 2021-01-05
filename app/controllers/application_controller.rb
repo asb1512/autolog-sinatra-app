@@ -28,4 +28,12 @@ class ApplicationController < Sinatra::Base
       flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
     end
   end
+
+  get '/login' do
+    erb :'users/login'
+  end
+
+  post '/login' do
+    
+  end
 end
