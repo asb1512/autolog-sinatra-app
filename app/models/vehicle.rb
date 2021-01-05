@@ -3,6 +3,6 @@ class Vehicle < ActiveRecord::Base
    has_many :entries
 
    def slug
-      self.name.parameterize
+      (self.model_year + self.make + self.model).parameterize
    end
 end
