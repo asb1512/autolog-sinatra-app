@@ -12,6 +12,8 @@
    <input id="submit" type="submit" value="Sign Up">
 </form>
 
+<p style="font-size: 12px;">Already have an account? <a href="/login">Login here.</a></p>
+
 <% if flash.has?(:message)%>
    <%= flash[:message] %>
 <% end %>
