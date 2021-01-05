@@ -2,10 +2,13 @@
 
 <form action="/signup" method="POST">
    <label>Email:</label>
-      <input id="email" type="text" name="[email]" placeholder="Email">
+      <input id="email" type="text" name="[email]" placeholder="Type email">
    <label>Password:</label>
-      <input id="password" type="password" name="[password]" placeholder="Password">
+      <input id="password" type="password" name="[password]" placeholder="Type passowrd">
       <p style="font-size: 10px;">Your password must be at least 8 characters long and include letters and a special character (!@#$%^&*)</p>
+   <label>Confirm Password:</label>
+      <input id="password_confirmation" type="password" name="[password_confirmation]" placeholder="Retype password">
+   <br>
    <input id="submit" type="submit" value="Sign Up">
 </form>
 

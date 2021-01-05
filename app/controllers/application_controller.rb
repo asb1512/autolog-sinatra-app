@@ -20,7 +20,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{7}\W{1}/.match(params[:password])
+    if params[:password] != params[:password_confirmation]
+      flash[:message] = "<p>Your passwords do not match. Please try again.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
+    elsif !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{7}\W{1}/.match(params[:password])
       user = User.create(email: params[:email], password: params[:password])
       session[:user_id] = user.id
       flash[:message] = "Your account has successfuly been created."
