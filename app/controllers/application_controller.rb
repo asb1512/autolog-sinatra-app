@@ -5,6 +5,7 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
   end
 
   get "/" do
@@ -19,6 +20,7 @@ class ApplicationController < Sinatra::Base
     binding.pry
     if !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{8}\W{1}/.match(params[:password])
       User.create(email: params[:email], password: params[:password])
+
     else
       redirect "/signup"
     end
