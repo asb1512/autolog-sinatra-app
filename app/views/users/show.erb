@@ -4,6 +4,10 @@
 <% if current_user.vehicles.empty? %>
    <p><%= "You don't have any vehicles yet!" %></p>
    <p><%= "Click the button below to add your first vehicle." %></p>
+<% else %>
+   <% current_user.vehicles.each do |vehicle| %>
+      <h4><%= "#{vehicle.model_year} #{vehicle.make} #{vehicle.model}" %></h4>
+   <% end %>
 <% end %>
 </div>
 
