@@ -22,6 +22,8 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     if params[:password] != params[:password_confirmation]
       flash[:message] = "<p>Your passwords do not match. Please try again.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
+    elsif User.find_by(email: params[:email])
+      flash[:message] = "<p>This email is already taken. Please use a different address.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
     elsif !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{7}\W{1}/.match(params[:password])
       user = User.create(email: params[:email], password: params[:password])
       session[:user_id] = user.id
@@ -40,14 +42,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    user = User.find_by(email: params[:email])
-
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/users/#{current_user.email}"
-    else
-      flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
-    end
+    @user = User.find_by(email: params[:email])
+    
+    
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.email}"
+    # else
+    #   flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
+    # end
   end
 
   get '/users/:email' do
