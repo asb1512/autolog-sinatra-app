@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     use Rack::Flash
+    set :views, Proc.new { File.join(root, "../views/") }
   end
 
   get "/" do
