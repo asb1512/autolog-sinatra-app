@@ -39,6 +39,13 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do
     user = User.find_by(email: params[:email])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/users/#{current_user.email}"
+    else
+      flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/login'>Login</a></p>"
+    end
   end
 
   helpers do
