@@ -8,6 +8,6 @@ class VehiclesController < ApplicationController
    end
 
    post '/vehicles' do
-
+      binding.pry
    end
 end

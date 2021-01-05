@@ -1,6 +1,6 @@
-<h3>Add a Vehicle</h3>
-
 <p><a href="/<%= current_user.email %>">Your Account</a></p>
+
+<h3>Add a Vehicle</h3>
 
 <form action="/vehicles" method=POST>
    <p>
@@ -19,4 +19,5 @@
       <label>Mileage</label>
          <input type="text" name="mileage" placeholder="e.g. '147000'">
    </p>
+   <input type=submit value="Add Vehicle">
 </form>
