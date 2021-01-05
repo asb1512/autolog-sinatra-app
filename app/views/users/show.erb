@@ -1,16 +1,16 @@
 <h3>Hello <%= current_user.email %>!</h3>
-
+<br>
 <div>
 <% if current_user.vehicles.empty? %>
    <p><%= "You don't have any vehicles yet!" %></p>
    <p><%= "Click the button below to add your first vehicle." %></p>
 <% else %>
    <% current_user.vehicles.each do |vehicle| %>
-      <h4><%= "#{vehicle.model_year} #{vehicle.make} #{vehicle.model}" %></h4>
+      <h4><%= "#{vehicle.model_year} #{vehicle.make} #{vehicle.model}" + "@ #{vehicle.mileage} miles" %></h4>
    <% end %>
 <% end %>
 </div>
-
+<br>
 <p><a href="/vehicles/new"><input type="button" value="Add Vehicle"></a></p>
 
 <p><a href="/logout"><input type=button value="Logout"></a></p>
