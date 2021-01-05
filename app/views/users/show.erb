@@ -1,7 +1,12 @@
 <h3>Hello <%= current_user.email %>!</h3>
 
+<div>
 <% if current_user.vehicles.empty? %>
    <p><%= "You don't have any vehicles yet!" %></p>
+   <p><%= "Click the button below to add your first vehicle." %></p>
 <% end %>
+</div>
+
+<p><a href="/vehicles/new"><input type="button" value="Add Vehicle"></a></p>
 
 <p><a href="/logout"><input type=button value="Logout"></a></p>
