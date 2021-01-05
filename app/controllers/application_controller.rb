@@ -25,7 +25,7 @@ class ApplicationController < Sinatra::Base
     elsif !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{7}\W{1}/.match(params[:password])
       user = User.create(email: params[:email], password: params[:password])
       session[:user_id] = user.id
-      flash[:message] = "Your account has successfuly been created."
+      flash[:message] = "<p>Your account was successfully created.</p><p>Back to <a href='/users/#{current_user.email}'>Profile</a></p>"
     else
       flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
     end
