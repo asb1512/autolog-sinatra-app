@@ -11,6 +11,7 @@ class EntriesController < ApplicationController
    get '/entries/:id' do
       if logged_in?
          @entry = Entry.find(params[:id])
+         @vehicle = Vehicle.find(@entry.vehicle_id)
          erb :'/entries/show'
       else
          flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
