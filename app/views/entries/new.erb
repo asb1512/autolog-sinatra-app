@@ -15,5 +15,11 @@
       <label>Due Date:</label>
          <input type="text" name="due_date">
    </p>
+   <p>
+      <label>Choose a vehicle for this task:</label>
+      <% current_user.vehicles.each do |vehicle| %>
+         <p><input type="radio" name="vehicles[]" value="<%= vehicle.id %>"> <%= "#{vehicle.model_year.to_s} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" %></p>
+      <% end %>
+   </p>
    <input type="submit" value="Create Entry">
 </form>
