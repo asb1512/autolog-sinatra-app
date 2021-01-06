@@ -9,8 +9,12 @@ class EntriesController < ApplicationController
    end
 
    get '/entries/:id' do
-      @entry = Entry.find(params[:id])
-      erb :'/entries/show'
+      if logged_in?
+         @entry = Entry.find(params[:id])
+         erb :'/entries/show'
+      else
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
    end
 
    post '/entries' do
