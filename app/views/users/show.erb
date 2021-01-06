@@ -10,9 +10,9 @@
       <% if vehicle.entries.empty? %>
          <p><%= "Currently, you do not have any entries for this vehicle." %></p>
       <% else %>
-         <% vehicles.entries.each do |entry| %>
+         <% vehicle.entries.each do |entry| %>
             <ul>
-               <li><%= entry.entry_type %></li>
+               <li><a href="/entries/<%= entry.id %>"><%= entry.entry_type %></a></li>
             </ul>
          <% end %>
       <% end %>
