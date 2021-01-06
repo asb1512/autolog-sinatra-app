@@ -8,20 +8,26 @@ class EntriesController < ApplicationController
       end
    end
 
+   get '/entries/:id' do
+      @entry = Entry.find(params[:id])
+      erb :'/entries/show'
+   end
+
    post '/entries' do
-      binding.pry
-      if params[:entry_type].empty? || params[:entry_content].empty? || params[:vehicles]
+      if params[:entry_type].empty? || params[:entry_content].empty? || params[:vehicles].empty?
          flash[:message] = "<p>You must include a maintenance type, a description, and an assigned vehicle. <a href='/entries/new'>Return to Entry</a></p>"
       elsif params[:due_date]
          entry = Entry.create(entry_type: params[:entry_type], entry_content: params[:entry_content], due_date: params[:due_date])
          vehicle = Vehicle.find(params[:vehicles].first)
-         vehicle << entry
+         vehicle.entries << entry
          vehicle.save
+         redirect "entries/#{entry.id}"
       else
          entry = Entry.create(entry_type: params[:entry_type], entry_content: params[:entry_content])
          vehicle = Vehicle.find(params[:vehicles].first)
          vehicle << entry
          vehicle.save
+         redirect "entries/#{entry.id}"
       end
    end
 
