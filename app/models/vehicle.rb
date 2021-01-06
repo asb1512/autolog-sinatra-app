@@ -13,4 +13,8 @@ class Vehicle < ActiveRecord::Base
          model = split_slug[2]
       Vehicle.find_by(model_year: model_year, make: make, model: model)
    end
+
+   def full_name
+      "#{self.model_year.to_s} #{self.make.capitalize} #{self.model.capitalize.gsub('_',' ')}"
+   end
 end
