@@ -1,3 +1,5 @@
+<p><a href="/<%= current_user.email %>">Account</a></p>
+
 <h3>New Maintenance Entry<h3>
 
 <form action="/entries" method="POST">
@@ -13,4 +15,5 @@
       <label>Due Date:</label>
          <input type="text" name="due_date">
    </p>
+   <input type="submit" value="Create Entry">
 </form>
