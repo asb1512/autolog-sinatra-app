@@ -4,4 +4,13 @@
 <% if @vehicle.entries.empty? %>
    <p><%= "You don't have any maintenance entries yet!" %></p>
    <p><%= "Click the button below to add your first entry." %></p>
+<% else %>
+   <% @vehicle.entries.each do |entry| %>
+      <h5><%= entry.entry_type %></h5>
+      <p><%= entry.content %></p>
+   <% end %>
 <% end %>
+
+<p><a href="/entries/new"><input type="button" value="New Entry"></a></p>
+
+<p><a href="/<%= current_user.email %>"><input type=button value="Back"></a></p>

@@ -9,6 +9,12 @@
       <h4><a href="/vehicles/<%= vehicle.slug %>"><%= "#{vehicle.model_year} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" + " @ #{vehicle.mileage} miles" %></a></h4>
       <% if vehicle.entries.empty? %>
          <p><%= "Currently, you do not have any entries for this vehicle." %></p>
+      <% else %>
+         <% vehicles.entries.each do |entry| %>
+            <ul>
+               <li><%= entry.entry_type %></li>
+            </ul>
+         <% end %>
       <% end %>
    <% end %>
 <% end %>
