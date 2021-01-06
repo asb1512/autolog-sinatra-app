@@ -18,7 +18,7 @@
    <p>
       <label>Choose a vehicle for this task:</label>
       <% current_user.vehicles.each do |vehicle| %>
-         <p><input type="radio" name="vehicles[]" value="<%= vehicle.id %>"> <%= "#{vehicle.model_year.to_s} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" %></p>
+         <p><input type="radio" name="vehicles[]" value="<%= vehicle.id %>" <%= 'checked' if current_user.vehicles.length == 1 %> > <%= "#{vehicle.model_year.to_s} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" %></p>
       <% end %>
    </p>
    <input type="submit" value="Create Entry">
