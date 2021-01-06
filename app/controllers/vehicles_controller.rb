@@ -8,14 +8,14 @@ class VehiclesController < ApplicationController
    end
 
    post '/vehicles' do
-      vehicle = Vehicle.create(model_year: params[:model_year], make: params[:make], model: params[:model], mileage: params[:mileage])
+      vehicle = Vehicle.create(model_year: params[:model_year], make: params[:make].downcase, model: params[:model].downcase, mileage: params[:mileage])
       current_user.vehicles << vehicle
       current_user.save
       redirect "/#{current_user.email}"
    end
 
    get '/vehicles/:slug' do
-
+      erb :'vehicles/show'
    end
 
 end
