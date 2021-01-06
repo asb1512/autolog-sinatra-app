@@ -6,7 +6,7 @@
    <p><%= "Click the button below to add your first vehicle." %></p>
 <% else %>
    <% current_user.vehicles.each do |vehicle| %>
-      <h4><a href="/vehicles/<%= vehicle.slug %>"><%= "#{vehicle.model_year} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" + "@ #{vehicle.mileage} miles" %></a></h4>
+      <h4><a href="/vehicles/<%= vehicle.slug %>"><%= "#{vehicle.model_year} #{vehicle.make.capitalize} #{vehicle.model.capitalize}" + " @ #{vehicle.mileage} miles" %></a></h4>
       <% if vehicle.entries.empty? %>
          <p><%= "Currently, you do not have any entries for this vehicle." %></p>
       <% end %>

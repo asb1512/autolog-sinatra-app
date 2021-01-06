@@ -1,0 +1,7 @@
+<h3><%= "#{@vehicle.model_year.to_s} #{@vehicle.make.capitalize} #{@vehicle.model.capitalize.gsub("_"," ")}" %></h3>
+<p><%= "#{@vehicle.mileage.to_s} miles" %></p>
+
+<% if @vehicle.entries.empty? %>
+   <p><%= "You don't have any maintenance entries yet!" %></p>
+   <p><%= "Click the button below to add your first entry." %></p>
+<% end %>
