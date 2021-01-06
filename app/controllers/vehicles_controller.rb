@@ -15,7 +15,16 @@ class VehiclesController < ApplicationController
    end
 
    get '/vehicles/:slug' do
-      erb :'vehicles/show'
+      if logged_in?
+         @vehicle = Vehicle.find_by_slug(params[:slug])
+         if @vehicle
+            erb :'vehicles/show'
+         else
+            flash[:message] = "<p>Vehicle not found.</p><p>Back to <a href='/#{current_user.email}'>Vehicles</a></p>"
+         end
+      else
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
    end
 
 end
