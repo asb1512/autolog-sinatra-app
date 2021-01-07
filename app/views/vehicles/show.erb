@@ -6,7 +6,7 @@
    <p><%= "Click the button below to add your first entry." %></p>
 <% else %>
    <% @vehicle.entries.each do |entry| %>
-      <h5><%= entry.entry_type %></h5>
+      <h5><a href="/entries/<%= entry.id %>"><%= entry.entry_type %></a></h5>
       <p><%= entry.entry_content %></p>
    <% end %>
 <% end %>
