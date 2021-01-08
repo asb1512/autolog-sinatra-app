@@ -9,6 +9,11 @@
    <input id="submit" type="submit" value="Submit">
 </form>
 
+<br>
+<br>
+
+<p><a href="/<%= current_user.email %>"><input type=button value="Back to Main"></a></p>
+
 <% if flash.has?(:message)%>
    <%= flash[:message] %>
 <% end %>
