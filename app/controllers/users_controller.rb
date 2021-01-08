@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       elsif !!/\w{1}@\w{1}/.match(params[:email]) && !!/\S{7}\W{1}/.match(params[:password])
          user = User.create(email: params[:email], password: params[:password])
          session[:user_id] = user.id
-         flash[:message] = "<p>Your account was successfully created.</p><p>Back to <a href='/users/#{current_user.email}'>Profile</a></p>"
+         flash[:message] = "<p>Your account was successfully created.</p><p>Back to <a href='/#{current_user.email}'>Profile</a></p>"
       else
          flash[:message] = "<p>Your email or password is invalid. Please try again.</p><p>Back to <a href='/signup'>Sign Up</a></p>"
       end
@@ -66,8 +66,9 @@ class UsersController < ApplicationController
 
    patch '/:email' do
       if logged_in? && !!/\w{1}@\w{1}/.match(params[:email])
-         current_user.update(email: params[:email])
-         flash[:message] = "<p>Your email was successfully updated.</p><p>Back to <a href='/users/#{current_user.email}'>Profile</a></p>"
+         current_user.email = params[:email]
+         current_user.save
+         flash[:message] = "<p>Your email was successfully updated.</p><p>Back to <a href='/#{current_user.email}'>Profile</a></p>"
       else
          flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
       end
