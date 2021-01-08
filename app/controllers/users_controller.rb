@@ -56,4 +56,7 @@ class UsersController < ApplicationController
       end
    end
 
+   get '/:email/edit' do
+      erb :'/users/edit'
+   end
 end
