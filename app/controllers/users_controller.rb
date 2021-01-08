@@ -50,13 +50,17 @@ class UsersController < ApplicationController
 
    get '/:email' do
       if logged_in? && current_user.email == params[:email]
-      erb :'/users/show'
+         erb :'/users/show'
       else
-      flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
       end
    end
 
    get '/:email/edit' do
-      erb :'/users/edit'
+      if logged_in? && current_user.email == params[:email]
+         erb :'/users/edit'
+      else
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
    end
 end
