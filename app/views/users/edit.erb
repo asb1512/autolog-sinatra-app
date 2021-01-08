@@ -1,0 +1,16 @@
+<h3>Edit Your Account</h3>
+
+<form action="/<%= current_user.email %>/edit" method="POST">
+   <input id="hidden" type="hidden" name="_method" value="PATCH">
+   <label>Email:</label>
+      <input id="email" type="text" name="[email]" placeholder="Type email">
+   <br>
+   <br>
+   <input id="submit" type="submit" value="Submit">
+</form>
+
+<p style="font-size: 12px;">Already have an account? <a href="/login">Login here.</a></p>
+
+<% if flash.has?(:message)%>
+   <%= flash[:message] %>
+<% end %>
