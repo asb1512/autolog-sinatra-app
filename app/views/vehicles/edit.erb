@@ -1,5 +1,24 @@
 <h3>Edit <%= @vehicle.full_name %></h3>
 
-<form action="/vehicles" method="POST">
+<form action="/vehicles" method=POST>
    <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+   <p>
+      <label>Model Year</label>
+         <input type="text" name="model_year" value="<%= @vehicle.model_year %>">
+   </p>
+   <p>
+      <label>Make</label>
+         <input type="text" name="make" value="<%= @vehicle.make.capitalize %>">
+   </p>
+   <p>
+      <label>Model</label>
+         <input type="text" name="model" value="<%= @vehicle.model.capitalize %>">
+      <p>If your make or model includes a dash (-), use an underscore (_) instead.</p>
+   </p>
+   <p>
+      <label>Mileage</label>
+         <input type="text" name="mileage" value="<%= @vehicle.mileage %>">
+   </p>
+   <input type=submit value="Edit Vehicle">
 </form>
