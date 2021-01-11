@@ -1,6 +1,6 @@
 <h3>Edit <%= @vehicle.full_name %></h3>
 
-<form action="/vehicles" method=POST>
+<form action="/vehicles/<%= @vehicle.sluig %>" method=POST>
    <input id="hidden" type="hidden" name="_method" value="PATCH">
 
    <p>

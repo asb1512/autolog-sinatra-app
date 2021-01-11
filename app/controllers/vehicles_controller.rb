@@ -44,4 +44,23 @@ class VehiclesController < ApplicationController
       end
    end
 
+   patch '/vehicles/:slug' do
+      @vehicle = Vehicle.find_by_slug(params[:slug])
+      if @vehicle
+         if logged_in?
+            if params[:model_year].include?(" ") || params[:make].include?(" ") || params[:model].include?(" ") || params[:mileage].include?(" ")
+                  flash[:message] = "<p>You cannot include spaces in the year, make, model, or mileage. Please try again.</p><p><a href='/vehicles/new'>Back</a></p>"
+            else
+               Vehicle.update(current_user.id, email: params[:email])
+               flash[:message] = "<p>Your email was successfully updated.</p><p>Back to <a href='/#{current_user.email}'>Profile</a></p>"
+               redirect "/#{current_user.email}"
+            end
+         else
+            flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+         end
+      else
+         flash[:message] = "<p>Vehicle not found.</p><p>Back to <a href='/#{current_user.email}'>Vehicles</a></p>"
+      end
+   end
+
 end
