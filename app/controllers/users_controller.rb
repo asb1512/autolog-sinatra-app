@@ -64,10 +64,9 @@ class UsersController < ApplicationController
       end
    end
 
-   patch '/:email' do
+   patch '/users' do
       if logged_in? && !!/\w{1}@\w{1}/.match(params[:email])
-         current_user.email = params[:email]
-         current_user.save
+         User.update(current_user.id, email: params[:email])
          flash[:message] = "<p>Your email was successfully updated.</p><p>Back to <a href='/#{current_user.email}'>Profile</a></p>"
       else
          flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"

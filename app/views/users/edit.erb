@@ -1,6 +1,6 @@
 <h3>Edit Your Account</h3>
 
-<form action="/<%= current_user.email %>" method="POST">
+<form action="/users" method="POST">
    <input id="hidden" type="hidden" name="_method" value="PATCH">
    <label>Email:</label>
       <input id="email" type="text" name="email" placeholder="Type email">
