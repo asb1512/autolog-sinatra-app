@@ -8,10 +8,14 @@ class VehiclesController < ApplicationController
    end
 
    post '/vehicles' do
-      vehicle = Vehicle.create(model_year: params[:model_year], make: params[:make].downcase, model: params[:model].downcase, mileage: params[:mileage])
-      current_user.vehicles << vehicle
-      current_user.save
-      redirect "/#{current_user.email}"
+      if params[:model_year].include?(" ") || params[:make].include?(" ") || params[:model].include?(" ") || params[:mileage].include?(" ")
+         flash[:message] = "<p>You cannot include spaces in the year, make, model, or mileage. Please try again.</p><p><a href='/vehicles/new'>Back</a></p>"
+      else
+         vehicle = Vehicle.create(model_year: params[:model_year], make: params[:make].downcase, model: params[:model].downcase, mileage: params[:mileage])
+         current_user.vehicles << vehicle
+         current_user.save
+         redirect "/#{current_user.email}"
+      end
    end
 
    get '/vehicles/:slug' do
