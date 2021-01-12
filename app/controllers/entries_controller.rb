@@ -41,4 +41,17 @@ class EntriesController < ApplicationController
       erb :'/entries/edit'
    end
 
+   patch '/entries/:id' do
+      @entry = Entry.find(params[:id])
+      if @entry
+         if logged_in?
+            
+         else
+
+         end
+      else
+         flash[:message] = "<p>Entry not found.</p><p>Back to <a href='/#{current_user.email}'>Account</a></p>"
+      end
+   end
+
 end
