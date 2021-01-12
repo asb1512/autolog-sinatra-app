@@ -1,3 +1,27 @@
 <p><a href="/<%= current_user.email %>">Account</a></p>
 
 <h3>Edit Maintenance Entry for your <a href="/vehicles/<%= @entry.vehicle.slug %>"><%= @entry.vehicle.full_name %></a><h3>
+
+<form action="/entries/<%= @entry.id %>" method="POST">
+   <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+   <p>
+      <label>Maintenance Type:</label>
+         <input type="text" name="entry_type" value="<%= @entry.entry_type %>">
+   </p>
+   <p>
+      <label>Description:</label>
+         <input type="text" name="entry_content" value="<%= @entry.entry_content %>">
+   </p>
+   <p>
+      <label>Due Date:</label>
+         <input type="date" name="due_date" value="<%= @entry.due_date %>">
+   </p>
+   <p>
+      <label>Choose a vehicle for this task:</label>
+      <% current_user.vehicles.each do |vehicle| %>
+         <p><input type="radio" name="vehicles[]" value="<%= vehicle.id %>" <%= 'checked' if vehicle.entries.include?(@entry) %> > <%= vehicle.full_name %></p>
+      <% end %>
+   </p>
+   <input type="submit" value="Create Entry">
+</form>
