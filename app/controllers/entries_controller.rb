@@ -37,6 +37,7 @@ class EntriesController < ApplicationController
    end
 
    get '/entries/:id/edit' do
+      @entry = Entry.find(params[:id])
       erb :'/entries/edit'
    end
 
