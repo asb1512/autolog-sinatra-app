@@ -36,4 +36,8 @@ class EntriesController < ApplicationController
       end
    end
 
+   get '/entries/:id/edit' do
+      erb :'/entries/edit'
+   end
+
 end
