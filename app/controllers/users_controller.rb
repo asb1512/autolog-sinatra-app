@@ -84,7 +84,8 @@ class UsersController < ApplicationController
 
    delete '/:email' do
       if logged_in?
-
+         current_user.destroy
+         flash[:message] = "<p>Your account has successfully been deleted. We're sorry to see you go.</p><p><a href='/'>Home</a></p>"
       else
          flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
       end
