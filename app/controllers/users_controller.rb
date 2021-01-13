@@ -49,7 +49,11 @@ class UsersController < ApplicationController
    end
 
    get '/:email/delete' do
-      
+      if logged_in? && current_user.email == params[:email]
+         erb :'/users/delete'
+      else
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
    end
 
    get '/:email' do
