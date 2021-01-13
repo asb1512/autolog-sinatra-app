@@ -82,7 +82,7 @@ class UsersController < ApplicationController
       end
    end
 
-   delete '/users/:id' do
+   delete '/users/:email' do
 
    end
 end
