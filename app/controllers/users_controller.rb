@@ -48,6 +48,10 @@ class UsersController < ApplicationController
       end
    end
 
+   get '/:email/delete' do
+      
+   end
+
    get '/:email' do
       if logged_in? && current_user.email == params[:email]
          erb :'/users/show'
@@ -75,6 +79,6 @@ class UsersController < ApplicationController
    end
 
    delete '/users/:id' do
-      
+
    end
 end
