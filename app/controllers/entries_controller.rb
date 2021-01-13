@@ -60,4 +60,7 @@ class EntriesController < ApplicationController
       end
    end
 
+   delete '/entries/:id' do
+      
+   end
 end
