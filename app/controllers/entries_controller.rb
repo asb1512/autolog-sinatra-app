@@ -47,13 +47,11 @@ class EntriesController < ApplicationController
          flash[:message] = "<p>You must include a maintenance type, a description, and an assigned vehicle. <a href='/entries/#{@entry.id}/edit'>Return to Entry Edit</a></p>"
       elsif @entry
          if params[:due_date]
-            entry = Entry.update(@entry.id, entry_type: params[:entry_type], entry_content: params[:entry_content], due_date: params[:due_date])
-            entry.vehicle_id = params[:vehicles].first.to_i
+            entry = Entry.update(@entry.id, entry_type: params[:entry_type], entry_content: params[:entry_content], due_date: params[:due_date], vehicle_id: params[:vehicles].first.to_i)
             flash[:message] = "<p>Your entry was successfully updated.</p><p>Back to <a href='/vehicles/#{@entry.vehicle.slug}'>your #{@entry.vehicle.full_name}</a></p>"
             redirect "/entries/#{@entry.id}"
          elsif !params[:due_date]
-            entry = Entry.update(@entry.id, entry_type: params[:entry_type], entry_content: params[:entry_content])
-            entry.vehicle_id = params[:vehicles].first.to_i
+            entry = Entry.update(@entry.id, entry_type: params[:entry_type], entry_content: params[:entry_content], vehicle_id: params[:vehicles].first.to_i)
             flash[:message] = "<p>Your entry was successfully updated.</p><p>Back to <a href='/vehicles/#{@entry.vehicle.slug}'>your #{@entry.vehicle.full_name}</a></p>"
             redirect "/entries/#{@entry.id}"
          else
