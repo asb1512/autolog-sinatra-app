@@ -25,3 +25,8 @@
    </p>
    <input type="submit" value="Edit Entry">
 </form>
+<form action="/entries/<%= @entry.id %>" method="POST">
+   <input id="hidden" type="hidden" name="_method" value="DELETE">
+
+   <input type="submit" value="Delete Entry">
+</form>

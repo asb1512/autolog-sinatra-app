@@ -61,6 +61,6 @@ class EntriesController < ApplicationController
    end
 
    delete '/entries/:id' do
-      
+      @entry = Entry.find(params[:id])
    end
 end
