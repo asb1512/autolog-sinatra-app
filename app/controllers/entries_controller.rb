@@ -62,5 +62,15 @@ class EntriesController < ApplicationController
 
    delete '/entries/:id' do
       @entry = Entry.find(params[:id])
+      if logged_in?
+         if @entry
+            @entry.destroy
+            flash[:message] = "<p>Your entry has successfully been deleted.</p><p><a href='/#{current_user.email}'>Account</a></p>"
+         else
+            flash[:message] = "<p>Entry not found.</p><p>Back to <a href='/#{current_user.email}'>Account</a></p>"
+         end
+      else
+         flash[:message] = "<p>You are not logged in. Please login or sign up.</p><p>Back to <a href='/login'>Login</a> or <a href='/signup'>Sign Up</a>.</p>"
+      end
    end
 end
