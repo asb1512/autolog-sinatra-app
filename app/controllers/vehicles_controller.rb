@@ -64,11 +64,11 @@ class VehiclesController < ApplicationController
    end
 
    delete '/vehicles/:id' do
-      @vehicle = Entry.find(params[:id])
+      @vehicle = Vehicle.find(params[:id])
       if logged_in?
          if @vehicle
             @vehicle.destroy
-            flash[:message] = "<p>Your entry has successfully been deleted.</p><p><a href='/#{current_user.email}'>Account</a></p>"
+            flash[:message] = "<p>Your vehicle has successfully been deleted.</p><p><a href='/#{current_user.email}'>Account</a></p>"
          else
             flash[:message] = "<p>Vehicle not found.</p><p>Back to <a href='/#{current_user.email}'>Account</a></p>"
          end
