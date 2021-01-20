@@ -20,5 +20,5 @@ Enter `shotgun` in the command to launch the local server and visit `localhost:9
 ## Sources
 * [corneal gem](https://github.com/thebrianemory/corneal) for Sinatra app scaffolding
 * Kevin Powell's YouTube tutorial [Create a responsive navigation with no JS!](https://www.youtube.com/watch?v=8QKOaTYvYUA)
-* W3 School's online resources
-* Stackoverflow
+* [W3 School](https://www.w3schools.com/)
+* [Stack Overflow](https://stackoverflow.com/)
