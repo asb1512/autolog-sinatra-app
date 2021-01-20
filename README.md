@@ -22,3 +22,6 @@ Enter `shotgun` in the command to launch the local server and visit `localhost:9
 * Kevin Powell's YouTube tutorial [Create a responsive navigation with no JS!](https://www.youtube.com/watch?v=8QKOaTYvYUA)
 * [W3 School](https://www.w3schools.com/)
 * [Stack Overflow](https://stackoverflow.com/)
+
+## License
+This project falls under the provision of the [MIT license](https://github.com/asb1512/autolog-sinatra-app/blob/development/LICENSE).
